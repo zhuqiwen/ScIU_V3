@@ -4,7 +4,9 @@ handle submission page
 */
 function serveSubmissionPage(parameter){
   
-  checkValidUser(parameter);
+  if((!checkValidUser(parameter)) && !settings.general.is_dev){
+    return handleErrorPage('Ahooooo!You have not logged in as ' + parameter.email)
+  }
   
   if(typeof parameter.for_month == 'undefined'){
     return handleErrorPage('forMonth Undefined');
@@ -16,7 +18,7 @@ function serveSubmissionPage(parameter){
   
   var htmlBasic = HtmlService.createTemplateFromFile('webAppTemplateBasic');
   var currentUserEmail = getCurrentUserEmail();
-  htmlBasic.greeting = 'Hi Jo';
+  htmlBasic.greeting = 'Hi ' + parameter.author;
   htmlBasic.greetingMessage = 'This form is used to share your submission with ScIU. Once the submission is done, 2 editors will be assigned to help improve it. An Email of editor assigning will also be sent to you email: ' + currentUserEmail;
   var form = HtmlService.createTemplateFromFile('webAppTemplateSubmissionForm');
   form.submitterEmail = currentUserEmail;
@@ -36,7 +38,10 @@ function serveApprovalPage(parameter){
   
   //the email in parameter should be one of the editor's email.
   //if not, an error should be returned
-  checkValidUser(parameter);
+  
+  if((!checkValidUser(parameter)) && !settings.general.is_dev){
+    return handleErrorPage('You have not logged in as ' + parameter.email)
+  }
   
   if(typeof parameter.post_id == 'undefined'){
     return handleErrorPage('doc id undefined');
@@ -52,7 +57,9 @@ function serveApprovalPage(parameter){
   
   if(isPostEditor(parameter)){
     var htmlBasic = HtmlService.createTemplateFromFile('webAppTemplateBasic');
-    htmlBasic.greeting = 'Hi Jo';
+    var query = 'email=' + parameter.email;
+    var editorInfo = finder.findRecordObj(query, members)[0];
+    htmlBasic.greeting = 'Hi ' + editorInfo.prefered_name.value;
     htmlBasic.greetingMessage = 'This is the approval form';
     
     var form = HtmlService.createTemplateFromFile('webAppTemplateApprovalForm');
@@ -156,12 +163,17 @@ function handleSubmission(parameter){
   
   
   //send a email to managing editor,
-  var emailBody = messageBody + ' at row ' + lastRowNumber;
+  var emailBody = messageBody + ' at row ' + (lastRowNumber + 1);
   email.sendMail(settings.general.managing_editor_email, 'New Submisstion Received', emailBody, '');
   
   var message = messageBody + ' has been reveived. Thanks.';
+  var response = {
+    greeting: "Good Job! " + parameter.author,
+    greetingMessage: message,
+    cardBody: '<div style="height:300px;margin: auto;text-align: center;padding: 50px 0;font-size: 9rem;">&#10003;</div>'
+  };
+  return response;
   
-  return message; 
   
 }
 
@@ -199,7 +211,14 @@ function handleApproval(parameter){
   var emailTemplate = 'approval notice / vonfirmation templare';
   var emailBody = email.renderTemplate(emailTemplate, emailData);
   email.sendMail(to, subject, emailBody, cc);
-  return 'Your approval has been reveiced, and the author will receive a notice about the approval as well.';
+//  return 'Your approval has been reveiced, and the author will receive a notice about the approval as well.';
+  
+  var response = {
+    greeting: "Thanks For Your Work!",
+    greetingMessage: "Your approval has been reveiced, and the author will receive a notice about the approval as well.",
+    cardBody: '<div style="height:300px;margin: auto;text-align: center;padding: 50px 0;font-size: 9rem;">&#10003;</div>'
+  };
+  return response;
 }
 
 

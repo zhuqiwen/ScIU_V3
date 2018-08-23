@@ -24,9 +24,7 @@ function checkValidUser(parameter){
   var targetUserEmail = parameter.email;
   var currentUserEmail = getCurrentUserEmail();
   //check if current user is target user
-  if(targetUserEmail != currentUserEmail){
-    return handleErrorPage('You have not logged in as ' + targetUserEmail)
-  }
+  return (targetUserEmail == currentUserEmail);
 }
 
 function isPostEditor(parameter){

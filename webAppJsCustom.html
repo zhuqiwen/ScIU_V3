@@ -20,8 +20,10 @@ window.addEventListener('load', preventFormSubmit);
 
 function onSuccess(response){
   console.log(response);
-  $('#container').html(response);
-  $("#form").LoadingOverlay("hide");
+  $('#h1-greeting').html(response.greeting);
+  $('#p-greeting-message').html(response.greetingMessage);
+  $('#div-card-body').html(response.cardBody);
+//  $("#form").LoadingOverlay("hide");
 
 }
 
