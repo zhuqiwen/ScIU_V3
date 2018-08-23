@@ -1,0 +1,49 @@
+<script>
+    // Animations initialization
+    new WOW().init();
+    
+    window.addEventListener('load', function() {
+  console.log('Page is loaded');
+});
+
+
+function preventFormSubmit() {
+  var forms = document.querySelectorAll('form');
+  for (var i = 0; i < forms.length; i++) {
+    forms[i].addEventListener('submit', function(event) {
+        event.preventDefault();
+    });
+  }
+}
+
+window.addEventListener('load', preventFormSubmit);
+
+function onSuccess(response){
+  console.log(response);
+  $('#container').html(response);
+  $("#form").LoadingOverlay("hide");
+
+}
+
+
+function onFailure(response){
+  console.log(response);
+  $("#form").LoadingOverlay("hide");
+
+}
+
+
+
+function handleFormSubmit(form){
+  //disable all form inputs
+  $("#button_submit").prop("disabled", true);
+  $("#form").LoadingOverlay("show");
+
+//  console.log(form.serialize());
+  google.script.run
+  .withFailureHandler(onFailure)
+  .withSuccessHandler(onSuccess)
+  .processForm(form);
+}
+
+</script>

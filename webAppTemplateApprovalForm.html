@@ -1,0 +1,30 @@
+<form class="text-center border border-light p-5" onSubmit=handleFormSubmit(this) id="form">
+
+    <input type="hidden" name="post_id" value="<?= postId ?>">
+    <input type="hidden" name="doc_link" value="<?= docLink ?>">
+    <input type="hidden" name="title" value="<?= title ?>">
+
+    <input type="hidden" name="form_type" value="approval">
+
+    <p class="h4 mb-4">ScIU Blog Approval Form</p>
+
+    <!-- google doc share url -->
+
+
+    <!-- time sensitive -->
+    <label>
+    <p>Post id: <?= postId ?></p>
+    <p><a href="<?= docLink ?>">Title: <?= title ?></a></p>
+    Has this article been approved for publishing?</label>
+    <select class="browser-default custom-select mb-4" name="approved" required>
+        <option value="" disabled selected>Choose option</option>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    
+
+    <button class="btn btn-info btn-block" type="submit" id="button_submit">Submit</button>
+
+</form>
+                
+                

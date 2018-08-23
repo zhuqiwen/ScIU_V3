@@ -1,0 +1,37 @@
+<form class="text-center border border-light p-5" onSubmit=handleFormSubmit(this) id="form">
+
+    <input type="hidden" name="author_email" value="<?= submitterEmail ?>">
+    <input type="hidden" name="commitment_month" value="<?= forMonth ?>">
+    <input type="hidden" name="year" value="<?= year ?>">
+    <input type="hidden" name="author" value="<?= author ?>">
+    <input type="hidden" name="form_type" value="submission">
+
+    <p class="h4 mb-4">ScIU Blog Submission Form</p>
+
+    <!-- google doc share url -->
+    <input type="text" id="title" class="form-control mb-4" placeholder="Article Title" name="title" required>
+
+    <input type="text" id="doc_url" class="form-control mb-4" placeholder="Paste Google Doc Share URL" name="doc_url" required>
+
+
+    <!-- time sensitive -->
+    <label>Is This Submission Time Sensitive?</label>
+    <select class="browser-default custom-select mb-4" name="time_sensitive" required>
+        <option value="" disabled selected>Choose option</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+    
+    
+    <label>What Is The Type Of This Submission?</label>
+    <select class="browser-default custom-select mb-4" name="submission_type" required>
+        <option value="" disabled selected>Choose option</option>
+        <option value="Draft" >Draft</option>
+        <option value="Outline">Outline</option>
+    </select>
+
+    <button class="btn btn-info btn-block" type="submit" id="button_submit">Submit</button>
+
+</form>
+                
+                

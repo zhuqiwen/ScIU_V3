@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>ScIU</title>
+    <!-- Font Awesome -->
+    <?!= include('webAppCssFontAwesome'); ?>
+
+    <!-- Bootstrap core CSS -->
+    <?!= include('webAppCssBootstrap'); ?>
+
+    <!-- Material Design Bootstrap -->
+    <?!= include('webAppCssMDB'); ?>
+
+    <!-- Your custom styles (optional) -->
+    <?!= include('webAppCssStyle'); ?>
+  
+</head>
+
+<body>
+
+  <!-- Navbar -->
+
+  <!-- Navbar -->
+
+  <!-- Full Page Intro -->
+  <!--<div class="view full-page-intro" style="background-image: url('https://mdbootstrap.com/img/Photos/Others/images/78.jpg'); background-repeat: no-repeat; background-size: cover;">-->
+  <div class="view full-page-intro" style="background-color:#5bc0de; background-repeat: no-repeat; background-size: cover;">
+
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-black-light d-flex justify-content-center align-items-center">
+
+      <!-- Content -->
+      <div class="container" id="container">
+
+        <!--Grid row-->
+        <div class="row wow fadeIn">
+
+          <!--Grid column-->
+          <div class="col-md-6 mb-4 white-text text-center text-md-left">
+
+            <h1 class="display-4 font-weight-bold">
+            <?= greeting ?>
+            </h1>
+
+            <hr class="hr-light">
+
+            <p class="mb-4 d-none d-md-block">
+              <strong>
+              <?= greetingMessage ?>
+              </strong>
+            </p>
+
+            <!--<a target="_blank" href="https://mdbootstrap.com/bootstrap-tutorial/" class="btn btn-indigo btn-lg">Start free tutorial
+              <i class="fa fa-graduation-cap ml-2"></i>
+            </a>-->
+
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-6 col-xl-5 mb-4">
+
+            <!--Card-->
+            <div class="card">
+
+              <!--Card content-->
+              <div class="card-body">
+
+                <?!= form?>
+
+              </div>
+
+            </div>
+            <!--/.Card-->
+
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+
+      </div>
+      <!-- Content -->
+
+    </div>
+    <!-- Mask & flexbox options-->
+
+  </div>
+  <!-- Full Page Intro -->
+
+  <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <?!= include('webAppJsJQuery'); ?>
+
+    <!-- Bootstrap tooltips -->
+    <?!= include('webAppJsPopper'); ?>
+
+    <!-- Bootstrap core JavaScript -->
+    <?!= include('webAppJsBootstrap'); ?>
+
+    <!-- MDB core JavaScript -->
+    <?!= include('webAppJsMDB'); ?>
+    
+    <!-- Loading Overlay JavaScript -->
+    <?!= include('webAppJsLoadingOverlay'); ?>
+    
+    <!-- custom JavaScript -->
+    <?!= include('webAppJsCustom'); ?>
+  <!-- Initializations -->
+  <script type="text/javascript">
+
+  </script>
+</body>
+
+</html>
